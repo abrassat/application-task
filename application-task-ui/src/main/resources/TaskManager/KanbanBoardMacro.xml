@@ -331,7 +331,11 @@ Example:
 .kanban-board .task-card-status-${sdone} .panel .panel-title {
   color: ${sdonecolor};
 }
-</code>
+/** Can be removed once KANBAN-15 is fixed. **/
+.kanban-item-title {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}</code>
     </property>
     <property>
       <contentType/>
