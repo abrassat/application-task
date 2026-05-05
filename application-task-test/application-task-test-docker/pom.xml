@@ -25,7 +25,7 @@
   <parent>
     <groupId>com.xwiki.task</groupId>
     <artifactId>application-task-test</artifactId>
-    <version>3.11.0-rc-2-SNAPSHOT</version>
+    <version>3.11.0-rc-3-SNAPSHOT</version>
   </parent>
   <artifactId>application-task-test-docker</artifactId>
   <name>Task Manager Application - Tests - Functional Docker Tests</name>
@@ -156,6 +156,18 @@
       <artifactId>jakarta.mail</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.xwiki.platform</groupId>
+      <artifactId>xwiki-platform-tag-test-pageobjects</artifactId>
+      <version>${platform.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.xwiki.platform</groupId>
+      <artifactId>xwiki-platform-tag-ui</artifactId>
+      <version>${platform.version}</version>
+      <type>xar</type>
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
   <build>
     <testSourceDirectory>src/test/it</testSourceDirectory>
@@ -164,6 +176,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+        </configuration>
       </plugin>
     </plugins>
   </build>

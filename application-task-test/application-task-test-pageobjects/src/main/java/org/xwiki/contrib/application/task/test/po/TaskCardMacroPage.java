@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+/*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
  *
@@ -18,22 +16,28 @@
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
--->
+ */
+package org.xwiki.contrib.application.task.test.po;
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <groupId>com.xwiki.task</groupId>
-    <artifactId>application-task</artifactId>
-    <version>3.11.0-rc-3-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.xwiki.date</groupId>
-  <artifactId>macro-date</artifactId>
-  <packaging>pom</packaging>
-  <name>Date Macro - Parent POM</name>
-  <modules>
-    <module>macro-date-api</module>
-    <module>macro-date-default</module>
-    <module>macro-date-ui</module>
-  </modules>
-</project>
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.xwiki.test.ui.po.ViewPage;
+
+/**
+ * Represents a page containing one or more TaskCard macros.
+ *
+ * @version $Id$
+ * @since 3.11.0
+ */
+public class TaskCardMacroPage extends ViewPage
+{
+    @FindBy(css = ".task-card")
+    private List<WebElement> taskCards;
+
+    public TaskCardMacro getTaskCard(int index)
+    {
+        return new TaskCardMacro(taskCards.get(index));
+    }
+}

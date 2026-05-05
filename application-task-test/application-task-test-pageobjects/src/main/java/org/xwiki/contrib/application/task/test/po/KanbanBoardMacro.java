@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+/*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
  *
@@ -18,22 +16,39 @@
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
--->
+ */
+package org.xwiki.contrib.application.task.test.po;
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <groupId>com.xwiki.task</groupId>
-    <artifactId>application-task</artifactId>
-    <version>3.11.0-rc-3-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.xwiki.date</groupId>
-  <artifactId>macro-date</artifactId>
-  <packaging>pom</packaging>
-  <name>Date Macro - Parent POM</name>
-  <modules>
-    <module>macro-date-api</module>
-    <module>macro-date-default</module>
-    <module>macro-date-ui</module>
-  </modules>
-</project>
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.xwiki.test.ui.po.BaseElement;
+
+/**
+ * Represents a KanbanBoard macro and provides access to its columns.
+ *
+ * @version $Id$
+ * @since 3.11.0
+ */
+public class KanbanBoardMacro extends BaseElement
+{
+    private final WebElement kanbanBoard;
+
+    public KanbanBoardMacro(WebElement kanbanBoard)
+    {
+        this.kanbanBoard = kanbanBoard;
+    }
+
+    public List<KanbanColumn> getColumns()
+    {
+        return kanbanBoard.findElements(By.cssSelector(".kanban-board")).stream().map(KanbanColumn::new)
+            .collect(Collectors.toList());
+    }
+
+    public KanbanColumn getColumn(int index)
+    {
+        return getColumns().get(index);
+    }
+}
